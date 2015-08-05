@@ -158,11 +158,11 @@ public class Unit implements IUnit {
         additionalExaminationCutoff_ = additionalExaminationCutoff;
 	}
 	
-	public String getGrade(float assignment1Score, float assignment2Score, float examScore) {
-		float totalScore = assignment1Score + assignment2Score + examScore;
+	public String getGrade(float assessment1Score, float assessment2Score, float examScore) {
+		float totalScore = assessment1Score + assessment2Score + examScore;
 		
-		if (assignment1Score < 0 || assignment1Score > assessment1Weight_ ||
-			assignment2Score < 0 || assignment2Score > assessment2Weight_ ||
+		if (assessment1Score < 0 || assessment1Score > assessment1Weight_ ||
+			assessment2Score < 0 || assessment2Score > assessment2Weight_ ||
 			examScore < 0 || examScore > examWeight_) {
 			throw new RuntimeException("Marks cannot be less than zero or greater than assessment weights");
 		}

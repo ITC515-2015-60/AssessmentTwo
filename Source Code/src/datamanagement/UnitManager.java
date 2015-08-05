@@ -1,23 +1,21 @@
 package datamanagement;
 
 import java.util.List;
-import org.jdom.*;
+import org.jdom.Element;
 
 public class UnitManager {
 
-	private static UnitManager self = null;
+	private final static UnitManager instance_ = new UnitManager();
 
 	private UnitMap UM;
 
-	public static UnitManager UM() {
-		if (self == null)
-			self = new UnitManager();
-		return self;
+	public UnitManager() {
+        UM = new UnitMap();
 	}
 
-	private UnitManager() {
-		UM = new UnitMap();
-	}
+	public static UnitManager getInstance() {
+        return instance_;
+    }
 
 	public IUnit getUnit(String uc) {
 		IUnit iu = UM.get(uc);
