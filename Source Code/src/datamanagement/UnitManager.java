@@ -5,69 +5,64 @@ import org.jdom.Element;
 
 public class UnitManager {
 
-	private final static UnitManager instance_ = new UnitManager();
+    private final static UnitManager instance_ = new UnitManager();
 
-	private UnitMap UM;
+    private UnitMap unitMap_;
 
-	public UnitManager() {
-        UM = new UnitMap();
-	}
+    public UnitManager() {
+        unitMap_ = new UnitMap();
+    }
 
-	public static UnitManager getInstance() {
+    public static UnitManager getInstance() {
         return instance_;
     }
 
-	public IUnit getUnit(String uc) {
-		IUnit iu = UM.get(uc);
-		return iu != null ? iu : createUnit(uc);
+    public IUnit getUnit(String unitCode) {
+        IUnit unit = unitMap_.get(unitCode);
 
-	}
+        return unit != null ? unit : createUnit(unitCode);
+    }
 
-	private IUnit createUnit(String unitCode) {
+    private IUnit createUnit(String unitCode) {
+        for (Element element : (List<Element>) XMLManager.getXML().getDocument()
+                .getRootElement().getChild("unitTable").getChildren("unit")) {
 
-		IUnit iu;
+            if (unitCode.equals(element.getAttributeValue("uid"))) {
 
-		for (Element el : (List<Element>) XMLManager.getXML().getDocument()
-				.getRootElement().getChild("unitTable").getChildren("unit"))
-			if (unitCode.equals(el.getAttributeValue("uid"))) {
-				StudentUnitRecordList slist;
+                IUnit unit = new Unit(element.getAttributeValue("uid"),
+                        element.getAttributeValue("name"),
+                        Float.valueOf(element.getAttributeValue("ps")).floatValue(),
+                        Float.valueOf(element.getAttributeValue("cr")).floatValue(),
+                        Float.valueOf(element.getAttributeValue("di")).floatValue(),
+                        Float.valueOf(element.getAttributeValue("hd")).floatValue(),
+                        Float.valueOf(element.getAttributeValue("ae")).floatValue(),
+                        Integer.valueOf(element.getAttributeValue("asg1wgt")).intValue(),
+                        Integer.valueOf(element.getAttributeValue("asg2wgt")).intValue(),
+                        Integer.valueOf(element.getAttributeValue("examwgt")).intValue(),
+                        StudentUnitRecordManager.instance().getRecordsByUnit(unitCode));
 
-				slist = null;
-				iu = new Unit(el.getAttributeValue("uid"),
-						el.getAttributeValue("name"), Float.valueOf(
-								el.getAttributeValue("ps")).floatValue(), Float
-								.valueOf(el.getAttributeValue("cr"))
-								.floatValue(), Float.valueOf(
-								el.getAttributeValue("di")).floatValue(), Float
-								.valueOf(el.getAttributeValue("hd"))
-								.floatValue(), Float.valueOf(
-								el.getAttributeValue("ae")).floatValue(),
-						Integer.valueOf(el.getAttributeValue("asg1wgt"))
-								.intValue(), Integer.valueOf(
-								el.getAttributeValue("asg2wgt")).intValue(),
-						Integer.valueOf(el.getAttributeValue("examwgt"))
-								.intValue(), StudentUnitRecordManager
-								.instance().getRecordsByUnit(unitCode));
-				UM.put(iu.getUnitCode(), iu);
-				return iu;
-			}
+                unitMap_.put(unit.getUnitCode(), unit);
 
-		throw new RuntimeException("DBMD: createUnit : unit not in file");
-	}
+                return unit;
+            }
+        }
 
-	public UnitMap getUnits() {
+        throw new RuntimeException("DBMD: createUnit : unit not in file");
+    }
 
-		UnitMap uM;
-		IUnit iu;
+    public UnitMap getUnitMap() {
 
-		uM = new UnitMap();
-		for (Element el : (List<Element>) XMLManager.getXML().getDocument()
-				.getRootElement().getChild("unitTable").getChildren("unit")) {
-			iu = new UnitProxy(el.getAttributeValue("uid"),
-					el.getAttributeValue("name"));
-			uM.put(iu.getUnitCode(), iu);
-		} // unit maps are filled with PROXY units
-		return uM;
-	}
+        UnitMap unitMap = new UnitMap();
 
+        // unit maps are filled with PROXY units
+        for (Element element : (List<Element>) XMLManager.getXML().getDocument()
+                .getRootElement().getChild("unitTable").getChildren("unit")) {
+
+            IUnit unit = new UnitProxy(element.getAttributeValue("uid"), element.getAttributeValue("name"));
+
+            unitMap.put(unit.getUnitCode(), unit);
+        }
+
+        return unitMap;
+    }
 }

@@ -11,7 +11,7 @@ public class ListUnitsControl {
     public void listUnits(IUnitLister unitLister) {
         unitLister.clearUnits();
 
-        UnitMap units = unitManager_.getUnits();
+        UnitMap units = unitManager_.getUnitMap();
 
         for (String key : units.keySet()) {
 

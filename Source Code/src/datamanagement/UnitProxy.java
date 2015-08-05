@@ -90,7 +90,7 @@ public class UnitProxy implements IUnit {
         return unitManager_.getUnit(unitCode_).getExamWeight();
     }
 
-    public void setAssessmentWeights(int assessment1Weight, int assessment2Weight, int assessment3Weight) {
-        unitManager_.getUnit(unitCode_).setAssessmentWeights(assessment1Weight, assessment2Weight, assessment3Weight);
+    public void setAssessmentWeights(int assessment1Weight, int assessment2Weight, int examWeight) {
+        unitManager_.getUnit(unitCode_).setAssessmentWeights(assessment1Weight, assessment2Weight, examWeight);
     }
 }
