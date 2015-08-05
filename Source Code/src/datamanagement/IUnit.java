@@ -5,30 +5,30 @@ public interface IUnit {
     public String getUnitCode();
     public String getUnitName();
 
-    public float getPsCutoff();
-    public void  setPsCutoff1(float cutoff);
+    public float getPassCutoff();
+    public void setPassCutoff(float cutoff);
 
-    public float getCrCutoff();
-    public void  setCrCutoff(float cutoff);
+    public float getCreditCutoff();
+    public void setCreditCutoff(float cutoff);
 
-    public float getDiCuttoff();    
-    public void  setDiCutoff(float cutoff);
+    public float getDistinctionCutoff();
+    public void setDistinctionCutoff(float cutoff);
 
-    public float getHdCutoff();
-    public void  setHdCutoff(float cutoff);    
+    public float getHighDistinctionCutoff();
+    public void setHighDistinctionCutoff(float cutoff);
 
-    public float getAeCutoff();    
-    public void  setAeCutoff(float cutoff);
+    public float getAdditionalExamCutoff();
+    public void setAdditionalExamCutoff(float cutoff);
     
-    public int getAsg1Weight();
-    public int getAsg2Weight();
+    public int getAssessment1Weight();
+    public int getAssessment2Weight();
     public int getExamWeight();
     public void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt);
 
     public String getGrade(float asg1, float asg2, float exam);
 
-    public void addStudentRecord(IStudentUnitRecord record );
-    public IStudentUnitRecord getStudentRecord(int studentID );
+    public void addStudentRecord(IStudentUnitRecord record);
+    public IStudentUnitRecord getStudentRecord(int studentID);
     
-    public StudentUnitRecordList listStudentRecords();
+    public StudentUnitRecordList getStudentRecords();
 }

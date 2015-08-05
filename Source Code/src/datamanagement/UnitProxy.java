@@ -10,32 +10,32 @@ private String UC;
         this.UC = unitCode;
             this.un = unitName;
                 um = UnitManager.UM(); }
-    public String getUnitCode() { 
+    public String getUnitCode() {
         return this.UC;}
         public String getUnitName() { 
             return this.un; 
         }
-    public void setPsCutoff1(float cutoff) {
-        um.getUnit(UC).setPsCutoff1(cutoff);
+    public void setPassCutoff(float cutoff) {
+        um.getUnit(UC).setPassCutoff(cutoff);
 }
-public float getPsCutoff() {
-        return um.getUnit(UC).getPsCutoff();}
-    public void setCrCutoff(float cutoff) {um.getUnit(UC).setCrCutoff(cutoff);
+public float getPassCutoff() {
+        return um.getUnit(UC).getPassCutoff();}
+    public void setCreditCutoff(float cutoff) {um.getUnit(UC).setCreditCutoff(cutoff);
     }
-    public float getCrCutoff() {
-return um.getUnit(UC).getCrCutoff();
+    public float getCreditCutoff() {
+return um.getUnit(UC).getCreditCutoff();
     }
 
-public void setDiCutoff(float cutoff) {um.getUnit(UC).setDiCutoff(cutoff);}
-    public float getDiCuttoff() {return um.getUnit(UC).getDiCuttoff();}
-public void setHdCutoff(float cutoff) {
-    um.getUnit(UC).setHdCutoff(cutoff);}
-    public float getHdCutoff() {
+public void setDistinctionCutoff(float cutoff) {um.getUnit(UC).setDistinctionCutoff(cutoff);}
+    public float getDistinctionCutoff() {return um.getUnit(UC).getDistinctionCutoff();}
+public void setHighDistinctionCutoff(float cutoff) {
+    um.getUnit(UC).setHighDistinctionCutoff(cutoff);}
+    public float getHighDistinctionCutoff() {
 
-        return um.getUnit(UC).getHdCutoff();}
-public void setAeCutoff(float cutoff) {um.getUnit(UC).setAeCutoff(cutoff);
+        return um.getUnit(UC).getHighDistinctionCutoff();}
+public void setAdditionalExamCutoff(float cutoff) {um.getUnit(UC).setAdditionalExamCutoff(cutoff);
     }
-    public float getAeCutoff() {return um.getUnit(UC).getAeCutoff();}
+    public float getAdditionalExamCutoff() {return um.getUnit(UC).getAdditionalExamCutoff();}
 public String getGrade(float f1, float f2, float f3) {
 return um.getUnit(UC).getGrade(f1, f2, f3);
     }
@@ -44,14 +44,14 @@ return um.getUnit(UC).getGrade(f1, f2, f3);
 um.getUnit(UC).addStudentRecord(record);
     }
     public IStudentUnitRecord getStudentRecord(int s) {return um.getUnit(UC).getStudentRecord(s);}
-public StudentUnitRecordList listStudentRecords() {
-    return um.getUnit(UC).listStudentRecords();
+public StudentUnitRecordList getStudentRecords() {
+    return um.getUnit(UC).getStudentRecords();
 }
-public int getAsg1Weight() {
-	return um.getUnit(UC).getAsg1Weight();
+public int getAssessment1Weight() {
+	return um.getUnit(UC).getAssessment1Weight();
 }
-public int getAsg2Weight() {
-	return um.getUnit(UC).getAsg2Weight();
+public int getAssessment2Weight() {
+	return um.getUnit(UC).getAssessment2Weight();
 }
 public int getExamWeight() {
 	return um.getUnit(UC).getExamWeight();
