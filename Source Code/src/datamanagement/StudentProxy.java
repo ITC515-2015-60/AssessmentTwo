@@ -1,63 +1,129 @@
 package datamanagement;
-public class StudentProxy implements IStudent {
-private Integer I;
-private String l;
+
+/**
+ * The proxy class for student.
+ *
+ * @author Zeno Li
+ * @since 2015-08-05
+ */
+public class StudentProxy
+    implements IStudent
+{
+    private Integer id_;
+    private String firstName_;
+    private String lastName_;
+    private StudentManager studentManager_;
+
+
+    /**
+     * Class constructor.
+     *
+     * @param id        Student ID.
+     * @param firstName First name.
+     * @param lastName  Last name.
+     */
+    public StudentProxy(Integer id, String firstName, String lastName)
+    {
+        this.id_ = id;
+        this.firstName_ = firstName;
+        this.lastName_ = lastName;
+        this.studentManager_ = StudentManager.getSelf();
+    }
 
 
 
-    private String Il;
-    private StudentManager lI;
-    public StudentProxy( Integer id, String fn, String Il) {
-        this.I = id;
-        this.l = fn;
+    /**
+     * Return student ID.
+     *
+     * @return Student ID.
+     */
+    public Integer getId()
+    {
+        return id_;
+    }
 
-        
-        this.Il = Il;
-this.lI = StudentManager.get();}
 
-    public Integer getID() { return I; 
 
-    
-    
+    /**
+     * Return first name.
+     *
+     * @return First name.
+     */
+    public String getFirstName()
+    {
+        return firstName_;
+    }
+
+
+
+    /**
+     * Return last name.
+     *
+     * @return Last name.
+     */
+    public String getLastName()
+    {
+        return lastName_;
+    }
+
+
+
+    /**
+     * Set first name.
+     *
+     * @param firstName First name.
+     */
+    public void setFirstName(String firstName)
+    {
+        studentManager_.getStudent(id_).setFirstName(firstName);
+    }
+
+
+
+    /**
+     * Set last name.
+     *
+     * @param lastName Last name.
+     */
+    public void setLastName(String lastName)
+    {
+        studentManager_.getStudent(id_).setLastName(lastName);
+    }
+
+
+
+    /**
+     * Add student-unit record to a student.
+     *
+     * @param studentUnitRecord Student-unit record.
+     */
+    public void addUnitRecord(IStudentUnitRecord studentUnitRecord)
+    {
+        studentManager_.getStudent(id_).addUnitRecord(studentUnitRecord);
+    }
+
+
+
+    /**
+     * Return Student-unit record for a unit.
+     *
+     * @param unitCode Unit code.
+     * @return  Student-unit record.
+     */
+    public IStudentUnitRecord getUnitRecord(String unitCode)
+    {
+        return studentManager_.getStudent(id_).getUnitRecord(unitCode);
+    }
+
+
+
+    /**
+     * Return student-unit record list.
+     *
+     * @return Student-unit record list.
+     */
+    public StudentUnitRecordList getUnitRecords()
+    {
+        return studentManager_.getStudent(id_).getUnitRecords();
+    }
 }
-public String getFirstName() { 
-        return l; }
-
-    public String getLastName() { 
-return Il; 
-}
-public void setFirstName(String firstName) {
-
-    
-    
-    
-    lI.getStudent(I).setFirstName(firstName);}
-    public void setLastName(String lastName) {
-        
-        
-        
-        lI.getStudent(I).setLastName(lastName);}
-
-    
-    
-        public void addUnitRecord(IStudentUnitRecord record) {
-        lI.getStudent(I).addUnitRecord(record);}
-        public IStudentUnitRecord getUnitRecord(String unitCode) {
-
-            
- 
-            
-            
-            
-            
-            
-                    return lI.getStudent(I).getUnitRecord(unitCode);}
-
-
-        
-  
-        
-        
-        
-        
-                                public StudentUnitRecordList getUnitRecords() { return lI.getStudent(I).getUnitRecords();}}

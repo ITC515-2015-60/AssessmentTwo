@@ -51,7 +51,7 @@ public class cgCTL {
 		}
 
 		else {
-			IStudent s = StudentManager.get().getStudent(id);
+			IStudent s = StudentManager.getSelf().getStudent(id);
 
 			IStudentUnitRecord r = s.getUnitRecord(cuc);
 
@@ -86,13 +86,13 @@ public class cgCTL {
 	public void saveGrade(float asg1, float asg2, float exam) {
 
 		IUnit u = UnitManager.UM().getUnit(cuc);
-		IStudent s = StudentManager.get().getStudent(currentStudentID);
+		IStudent s = StudentManager.getSelf().getStudent(currentStudentID);
 
 		IStudentUnitRecord r = s.getUnitRecord(cuc);
-		r.setAsg1(asg1);
-		r.setAsg2(asg2);
-		r.setExam(exam);
-		StudentUnitRecordManager.instance().saveRecord(r);
+		r.setAssignment1Mark(asg1);
+		r.setAssignment2Mark(asg2);
+		r.setExamMark(exam);
+		StudentUnitRecordManager.getSelf().saveRecord(r);
 		CGUI.setState4(true);
 		CGUI.setState5(false);
 		CGUI.setState6(false);
