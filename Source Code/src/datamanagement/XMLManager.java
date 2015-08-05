@@ -35,13 +35,13 @@ public class XmlManager {
 
             document_ = builder.build(documentFileName);
         }
-        catch (JDOMException e) {
+        catch (JDOMException exception) {
 
             System.err.printf("%s", "DBMD: XmlManager : initializeDocument : caught JDOMException\n");
 
             throw new RuntimeException("DBMD: XmlManager : initializeDocument : JDOMException");
         }
-        catch (IOException e) {
+        catch (IOException exception) {
 
             System.err.printf("%s", "DBMD: XmlManager : initializeDocument : caught IOException\n");
 
@@ -64,7 +64,7 @@ public class XmlManager {
 
             fileStream.close();
         }
-        catch (IOException ioe) {
+        catch (IOException exception) {
 
             System.err.printf("%s\n", "DBMD : XmlManager : saveDocument : Error saving XML to " + documentFileName);
 
