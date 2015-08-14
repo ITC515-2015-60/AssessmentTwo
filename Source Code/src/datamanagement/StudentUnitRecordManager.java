@@ -3,6 +3,7 @@ package datamanagement;
 import org.jdom.Element;
 
 import java.util.List;
+import java.util.HashMap;
 
 /**
  * The class controls student-unit record object.
@@ -12,12 +13,12 @@ import java.util.List;
  */
 public class StudentUnitRecordManager
 {
-    private static StudentUnitRecordManager self_ = null;
+    private final static StudentUnitRecordManager instance_ = new StudentUnitRecordManager();
 
     private StudentUnitRecordMap studentUnitRecordMap_;
-    private java.util.HashMap<String, StudentUnitRecordList>
+    private HashMap<String, StudentUnitRecordList>
             unitStudentRecordListMap_;
-    private java.util.HashMap<Integer, StudentUnitRecordList>
+    private HashMap<Integer, StudentUnitRecordList>
             studentIdStudentRecordListMap_;
 
 
@@ -28,21 +29,20 @@ public class StudentUnitRecordManager
     private StudentUnitRecordManager()
     {
         studentUnitRecordMap_ = new StudentUnitRecordMap();
-        unitStudentRecordListMap_ = new java.util.HashMap<>();
-        studentIdStudentRecordListMap_ = new java.util.HashMap<>();
+        unitStudentRecordListMap_ = new HashMap<>();
+        studentIdStudentRecordListMap_ = new HashMap<>();
     }
 
 
 
     /**
-     * Return static student-unit record object self_.
+     * Return static student-unit record object instance_.
      *
      * @return Student-unit record.
      */
-    public static StudentUnitRecordManager getSelf()
+    public static StudentUnitRecordManager getInstance()
     {
-        if (self_ == null) self_ = new StudentUnitRecordManager();
-        return self_;
+        return instance_;
     }
 
 
@@ -89,7 +89,7 @@ public class StudentUnitRecordManager
                 record = new StudentUnitRecord(studentId, unitCode,
                                                assignment1, assignment2, exam);
 
-                studentUnitRecordMap_.put(record.getStudentID().toString() +
+                studentUnitRecordMap_.put(record.getStudentId().toString() +
                                           record.getUnitCode(), record);
 
                 return record;
@@ -189,7 +189,7 @@ public class StudentUnitRecordManager
              XMLManager.getXML().getDocument().getRootElement().
                         getChild("studentUnitRecordTable").
                         getChildren("record")) {
-            Integer studentId = studentUnitRecord.getStudentID();
+            Integer studentId = studentUnitRecord.getStudentId();
             String recordStudentId = element.getAttributeValue("sid");
 
             String unitCode = studentUnitRecord.getUnitCode();

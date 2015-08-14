@@ -9,7 +9,7 @@ package datamanagement;
 public class StudentUnitRecordProxy
     implements IStudentUnitRecord
 {
-    private Integer studentID_;
+    private Integer studentId_;
     private String unitCode_;
     private StudentUnitRecordManager studentUnitRecordManager_;
 
@@ -23,9 +23,9 @@ public class StudentUnitRecordProxy
      */
     public StudentUnitRecordProxy(Integer id, String unitCode)
     {
-        this.studentID_ = id;
+        this.studentId_ = id;
         this.unitCode_ = unitCode;
-        this.studentUnitRecordManager_ = StudentUnitRecordManager.getSelf();
+        this.studentUnitRecordManager_ = StudentUnitRecordManager.getInstance();
     }
 
 
@@ -35,9 +35,9 @@ public class StudentUnitRecordProxy
      *
      * @return Student ID.
      */
-    public Integer getStudentID()
+    public Integer getStudentId()
     {
-        return studentID_;
+        return studentId_;
     }
 
 
@@ -62,7 +62,7 @@ public class StudentUnitRecordProxy
     public void setAssignment1Mark(float mark)
     {
         studentUnitRecordManager_.
-               getStudentUnitRecord(studentID_, unitCode_).
+               getStudentUnitRecord(studentId_, unitCode_).
                setAssignment1Mark(mark);
     }
 
@@ -76,7 +76,7 @@ public class StudentUnitRecordProxy
     public float getAssignment1Mark()
     {
         return studentUnitRecordManager_.
-               getStudentUnitRecord(studentID_, unitCode_).
+               getStudentUnitRecord(studentId_, unitCode_).
                getAssignment1Mark();
     }
 
@@ -88,7 +88,7 @@ public class StudentUnitRecordProxy
      * @param mark Assignment 2 mark.
      */
     public void setAssignment2Mark(float mark) {
-        studentUnitRecordManager_.getStudentUnitRecord(studentID_, unitCode_).
+        studentUnitRecordManager_.getStudentUnitRecord(studentId_, unitCode_).
                setAssignment2Mark(mark);
     }
 
@@ -101,7 +101,7 @@ public class StudentUnitRecordProxy
      */
     public float getAssignment2Mark() {
         return studentUnitRecordManager_.
-               getStudentUnitRecord(studentID_, unitCode_).
+               getStudentUnitRecord(studentId_, unitCode_).
                getAssignment2Mark();
     }
 
@@ -114,7 +114,7 @@ public class StudentUnitRecordProxy
      */
     public void setExamMark(float mark) {
         studentUnitRecordManager_.
-               getStudentUnitRecord(studentID_, unitCode_).
+               getStudentUnitRecord(studentId_, unitCode_).
                setExamMark(mark);
     }
 
@@ -127,7 +127,7 @@ public class StudentUnitRecordProxy
      */
     public float getExamMark() {
         return studentUnitRecordManager_.
-               getStudentUnitRecord(studentID_, unitCode_).
+               getStudentUnitRecord(studentId_, unitCode_).
                getExamMark();
     }
 
@@ -140,7 +140,7 @@ public class StudentUnitRecordProxy
      */
     public float getTotalMark() {
         return studentUnitRecordManager_.
-               getStudentUnitRecord(studentID_, unitCode_).
+               getStudentUnitRecord(studentId_, unitCode_).
                getTotalMark();
     }
 }

@@ -49,7 +49,7 @@ public class UnitManager {
 								el.getAttributeValue("asg2wgt")).intValue(),
 						Integer.valueOf(el.getAttributeValue("examwgt"))
 								.intValue(), StudentUnitRecordManager
-								.getSelf().getRecordsByUnit(unitCode));
+								.getInstance().getRecordsByUnit(unitCode));
 				UM.put(iu.getUnitCode(), iu);
 				return iu;
 			}
