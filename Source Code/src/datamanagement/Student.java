@@ -1,38 +1,138 @@
 package datamanagement;
 
-public class Student implements IStudent {
-    private Integer id; private String fn;
-            private String ln;
-private StudentUnitRecordList su;
+/**
+ * The class represents a student object.
+ *
+ * @author Zeno Li
+ * @since 2015-08-05
+ */
+public class Student
+    implements IStudent
+{
+    private Integer id_;
+    private String firstName_;
+    private String lastName_;
+    private StudentUnitRecordList studentUnitRecordList_;
 
-public Student( Integer id, String fn, String ln, StudentUnitRecordList su ) { this.id = id; this.fn = fn;
-        this.ln = ln;this.su = 
-        su == null ? new StudentUnitRecordList() : 
-                su;
+
+
+    /**
+     * Class constructor.
+     *
+     * @param id                    Student ID.
+     * @param firstName             First name.
+     * @param lastName              Last name.
+     * @param studentUnitRecordList Student-unit record list.
+     */
+    public Student(Integer id, String firstName, String lastName,
+                   StudentUnitRecordList studentUnitRecordList)
+    {
+        this.id_ = id;
+        this.firstName_ = firstName;
+        this.lastName_ = lastName;
+        this.studentUnitRecordList_ =
+                studentUnitRecordList == null ? new StudentUnitRecordList() :
+                                         studentUnitRecordList;
+    }
+
+
+
+    /**
+     * Return student ID.
+     *
+     * @return  Student ID.
+     */
+    public Integer getId()
+    {
+        return this.id_;
+    }
+
+
+
+    /**
+     * Return first name.
+     *
+     * @return First name.
+     */
+    public String getFirstName()
+    {
+        return firstName_;
+    }
+
+
+
+    /**
+     * Set first name.
+     *
+     * @param firstName First name.
+     */
+    public void setFirstName(String firstName)
+    {
+        this.firstName_ = firstName;
+    }
+
+
+
+    /**
+     * Return last name.
+     *
+     * @return  Last name.
+     */
+    public String getLastName()
+    {
+        return lastName_;
+    }
+
+
+
+    /**
+     * Set last name
+     *
+     * @param lastName  Last name.
+     */
+    public void setLastName(String lastName)
+    {
+        this.lastName_ = lastName;
+    }
+
+
+
+    /**
+     * Add student-unit record.
+     *
+     * @param studentUnitRecord Student-unit record.
+     */
+    public void addUnitRecord(IStudentUnitRecord studentUnitRecord)
+    {
+        studentUnitRecordList_.add(studentUnitRecord);
+    }
+
+
+
+    /**
+     * Return student-unit record for an unit.
+     *
+     * @param unitCode Unit code.
+     * @return  Student-unit record.
+     */
+    public IStudentUnitRecord getUnitRecord(String unitCode)
+    {
+        for (IStudentUnitRecord r : studentUnitRecordList_)
+            if (r.getUnitCode().equals(unitCode))
+                return r;
+
+        return null;
+    }
+
+
+
+    /**
+     * Return student-unit record list.
+     *
+     * @return Student-unit record list.
+     */
+    public StudentUnitRecordList getUnitRecords()
+    {
+        return studentUnitRecordList_;
+    }
 }
-
-    public Integer getID() { return this.id; 
-} public String getFirstName() { 
-return fn; }
-
-    public void setFirstName( String firstName ) { 
-this.fn = firstName; }
-
-public String getLastName() { 
-    return ln; }
-    public void setLastName( String lastName ) { 
-
-        
-this.ln = lastName; }
-
-public void addUnitRecord( IStudentUnitRecord record ) { su.add(record); }
-        public IStudentUnitRecord getUnitRecord( String unitCode ) {
-for ( IStudentUnitRecord r : su ) 
-            if ( r.getUnitCode().equals(unitCode)) 
-return r; 
-
-return null;
-        
-}
-
-public StudentUnitRecordList getUnitRecords() { return su; }}
