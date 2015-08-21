@@ -384,7 +384,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	}
 
 	public void addStudent(IStudent student) {
-		rM.addElement(student.getID().toString() + " : "
+		rM.addElement(student.getId().toString() + " : "
 				+ student.getFirstName() + " " + student.getLastName());
 	}
 
@@ -394,9 +394,9 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	}
 
 	public void setRecord(IStudentUnitRecord record) {
-		jTextField1.setText(new Float(record.getAsg1()).toString());
-		jTextField2.setText(new Float(record.getAsg2()).toString());
-		jTextField3.setText(new Float(record.getExam()).toString());
+		jTextField1.setText(new Float(record.getAssignment1Mark()).toString());
+		jTextField2.setText(new Float(record.getAssignment2Mark()).toString());
+		jTextField3.setText(new Float(record.getExamMark()).toString());
 		jLabel5.setText("");
 	}
 

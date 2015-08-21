@@ -24,7 +24,7 @@ public class UnitManager {
     }
 
     private IUnit createUnit(String unitCode) {
-        for (Element element : (List<Element>) XMLManager.getXML().getDocument()
+        for (Element element : (List<Element>) XmlManager.getInstance().getDocument()
                 .getRootElement().getChild("unitTable").getChildren("unit")) {
 
             if (unitCode.equals(element.getAttributeValue("uid"))) {
@@ -39,7 +39,7 @@ public class UnitManager {
                         Integer.valueOf(element.getAttributeValue("asg1wgt")).intValue(),
                         Integer.valueOf(element.getAttributeValue("asg2wgt")).intValue(),
                         Integer.valueOf(element.getAttributeValue("examwgt")).intValue(),
-                        StudentUnitRecordManager.instance().getRecordsByUnit(unitCode));
+                        StudentUnitRecordManager.getSelf().getRecordsByUnit(unitCode));
 
                 unitMap_.put(unit.getUnitCode(), unit);
 
@@ -53,7 +53,7 @@ public class UnitManager {
     public UnitMap getUnitMap() {
 
         UnitMap unitMap = new UnitMap();
-		for (Element el : (List<Element>) XmlManager.getInstance().getDocument()
+		for (Element element : (List<Element>) XmlManager.getInstance().getDocument()
 				.getRootElement().getChild("unitTable").getChildren("unit")) {
             IUnit unit = new UnitProxy(element.getAttributeValue("uid"), element.getAttributeValue("name"));
 
