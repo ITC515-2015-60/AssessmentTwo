@@ -5,8 +5,6 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		IStudentLister {
