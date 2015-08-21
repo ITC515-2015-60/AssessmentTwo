@@ -53,7 +53,12 @@ public class StudentManager {
     }
 
 
-
+    /**
+     * Get a student from the datasource.
+     *
+     * @param id Student ID
+     * @return XmlElement for Student object
+     */
     private Element getStudentElement(Integer id)
     {
         for (Element element :
