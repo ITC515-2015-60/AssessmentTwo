@@ -1,5 +1,11 @@
 package datamanagement;
 
+/**
+ * This class controls the functions for interface between view and model.
+ *
+ * @author Andrew Tobin
+ * @since 2015-08-05
+ */
 public class CheckGradeControl {
 
 	private CheckGradeUserInterface checkGradeUserInterface_;
@@ -7,10 +13,18 @@ public class CheckGradeControl {
 	private Integer currentStudentId_ = null;
 	private boolean hasChanged_ = false;
 
+	/**
+	 * Empty constructor
+	 */
 	public CheckGradeControl() {
 	}
 
-	public void execute() {
+
+
+	/**
+	 * Initializes the UI viewmodel
+	 */
+	public void initialize() {
 		checkGradeUserInterface_ = new CheckGradeUserInterface(this);
 		checkGradeUserInterface_.enableUnitsComboBox(false);
 
@@ -27,15 +41,21 @@ public class CheckGradeControl {
 		checkGradeUserInterface_.enableUnitsComboBox(true);
 	}
 
-	public void unitSelected(String code) {
 
-		if (code.equals("NONE"))
+
+	/**
+	 * The changes to the UI when the unit is selected
+	 * @param unitCode
+	 */
+	public void unitSelected(String unitCode) {
+
+		if (unitCode.equals("NONE"))
 			checkGradeUserInterface_.enableStudentRecordsComboBox(false);
 		else {
 			ListStudentsCTL listStudentsControl = new ListStudentsCTL();
-			listStudentsControl.listStudents(checkGradeUserInterface_, code);
+			listStudentsControl.listStudents(checkGradeUserInterface_, unitCode);
 
-			currentUnitCode_ = code;
+			currentUnitCode_ = unitCode;
 
 			checkGradeUserInterface_.enableStudentRecordsComboBox(true);
 		}
@@ -43,8 +63,14 @@ public class CheckGradeControl {
 		checkGradeUserInterface_.enableCheckGradeButton(false);
 	}
 
-	public void studentSelected(Integer id) {
-		currentStudentId_ = id;
+
+
+	/**
+	 * The changes to the UI when the student is selected.
+	 * @param studentId
+	 */
+	public void studentSelected(Integer studentId) {
+		currentStudentId_ = studentId;
 
 		if (currentStudentId_.intValue() == 0) {
 			checkGradeUserInterface_.clearStudentMarks();
@@ -54,7 +80,7 @@ public class CheckGradeControl {
 			checkGradeUserInterface_.enableSaveButton(false);
 		}
 		else {
-			IStudent student = StudentManager.getSelf().getStudent(id);
+			IStudent student = StudentManager.getSelf().getStudent(studentId);
 
 			IStudentUnitRecord studentUnitRecord =
 					student.getUnitRecord(currentUnitCode_);
@@ -69,6 +95,15 @@ public class CheckGradeControl {
 		}
 	}
 
+
+
+	/**
+	 * When the checkGrade button is pressed.
+	 * @param assessment1Mark
+	 * @param assessment2Mark
+	 * @param examMark
+	 * @return
+	 */
 	public String checkGrade(float assessment1Mark,
 							 float assessment2Mark,
 							 float examMark) {
@@ -87,6 +122,11 @@ public class CheckGradeControl {
 		return studentGrade;
 	}
 
+
+
+	/**
+	 * Enable the Change Marks functions.
+	 */
 	public void enableChangeMarks() {
 		checkGradeUserInterface_.enableChangeGradeButton(false);
 		checkGradeUserInterface_.enableSaveButton(false);
@@ -94,6 +134,14 @@ public class CheckGradeControl {
 		hasChanged_ = true;
 	}
 
+
+
+	/**
+	 * Save the grade changes for the student for the subject.
+	 * @param assessment1Mark
+	 * @param assessment2Mark
+	 * @param examMark
+	 */
 	public void saveGrade(float assessment1Mark,
 						  float assessment2Mark,
 						  float examMark) {

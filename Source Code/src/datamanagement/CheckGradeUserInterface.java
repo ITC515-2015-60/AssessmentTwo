@@ -21,9 +21,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-
+/**
+ * This class code-behind for the View.
+ *
+ * @author Andrew Tobin
+ * @since 2015-08-05
+ */
 public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 		IStudentLister {
+
+	// Variables used internally
 	private CheckGradeControl checkGradeControl_;
 	private DefaultComboBoxModel unitsListModel_;
 	private DefaultComboBoxModel studentRecordsListModel_;
@@ -32,6 +39,7 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	private float examMark_;
 	private Integer studentId_;
 
+	// Connections to the view objects
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private JButton changeButton;
 	private JButton checkGradeButton;
@@ -52,6 +60,11 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	private JTextField assessment2MarkTextField;
 	private JTextField examMarkTextField;
 
+
+	/**
+	 * Wire the view control to the view.
+	 * @param checkGradeControl
+	 */
 	public CheckGradeUserInterface(CheckGradeControl checkGradeControl) {
 		checkGradeControl_ = checkGradeControl;
 
@@ -395,7 +408,10 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	}// </editor-fold>//GEN-END:initComponents
 
 
-
+	/**
+	 * The event for when the unitsListComboBox changes.
+	 * @param event
+	 */
 	private void unitsListComboBoxItemStateChanged(ItemEvent event) {// GEN-FIRST:event_jComboBox1ItemStateChanged
 		String selectedUnit = (String) unitsListComboBox.getSelectedItem();
 
@@ -413,6 +429,10 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 
 
 
+	/**
+	 * The event for when the studentRecordsListComboBox changes.
+	 * @param event
+	 */
 	private void studentRecordsComboBoxItemStateChanged(ItemEvent event) {// GEN-FIRST:event_jComboBox2ItemStateChanged
 		clearStudentMarks();
 		String sekectedStudent = (String) studentRecordsComboBox.getSelectedItem();
@@ -429,6 +449,10 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 
 
 
+	/**
+	 * The event for when the save button is pressed.
+	 * @param event
+	 */
 	private void saveButtonActionPerformed(ActionEvent event) {// GEN-FIRST:event_jButton3ActionPerformed
 		assessment1Mark_ = new Float(assessment1MarkTextField.getText()).floatValue();
 		assessment2Mark_ = new Float(assessment2MarkTextField.getText()).floatValue();
@@ -446,6 +470,10 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 
 
 
+	/**
+	 * The event for when the change button is pressed.
+	 * @param event
+	 */
 	private void changeButtonActionPerformed(ActionEvent event) {// GEN-FIRST:event_jButton1ActionPerformed
 		checkGradeControl_.enableChangeMarks();
 		gradeLabel.setText("");
@@ -453,6 +481,10 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 
 
 
+	/**
+	 * Clear the grade when the assessment 1 mark changes.
+	 * @param event
+	 */
 	private void assessment1MarkTextFieldKeyTyped(KeyEvent event) {// GEN-FIRST:event_jTextField1KeyTyped
 		gradeLabel.setText("");
 		errorMessageLabel.setText("");
@@ -460,6 +492,10 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 
 
 
+	/**
+	 * The event for when the check grade button is pressed.
+	 * @param event
+	 */
 	private void checkGradeButtonActionPerformed(ActionEvent event) {// GEN-FIRST:event_jButton2ActionPerformed
 		float assessment1Mark =
 				new Float(assessment1MarkTextField.getText()).floatValue();
@@ -478,7 +514,9 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	}// GEN-LAST:event_jButton2ActionPerformed
 
 
-
+	/**
+	 * Clear the units list, and the students list.
+	 */
 	public void clearUnits() {
 		unitsListModel_.removeAllElements();
 		unitsListModel_.addElement("<none selected>");
@@ -486,41 +524,58 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	}
 
 
-
-	public void addUnit(IUnit u) {
-		unitsListModel_.addElement(u.getUnitCode());
+	/**
+	 * Add a unit to the UI List
+	 * @param unit
+	 */
+	public void addUnit(IUnit unit) {
+		unitsListModel_.addElement(unit.getUnitCode());
 	}
 
 
-
+	/**
+	 * Allows the units combo box to be changed.
+	 * @param enable
+	 */
 	public void enableUnitsComboBox(boolean enable) {
 		unitsListComboBox.setEnabled(enable);
 		errorMessageLabel.setText("");
 	}
 
 
-
+	/**
+	 * Clears the students in the student records combo box.
+	 */
 	public void clearStudents() {
 		studentRecordsListModel_.removeAllElements();
 		studentRecordsListModel_.addElement("<none selected>");
 	}
 
 
-
+	/**
+	 * Adds a student's record to the student records combo box.
+	 * @param student
+	 */
 	public void addStudent(IStudent student) {
 		studentRecordsListModel_.addElement(student.getId().toString() + " : "
 				+ student.getFirstName() + " " + student.getLastName());
 	}
 
 
-
+	/**
+	 * Allows the student records combo box to be changed.
+	 * @param enable
+	 */
 	public void enableStudentRecordsComboBox(boolean enable) {
 		studentRecordsComboBox.setEnabled(enable);
 		errorMessageLabel.setText("");
 	}
 
 
-
+	/**
+	 * Sets the text fields when a student record is chosen.
+	 * @param record
+	 */
 	public void setRecord(IStudentUnitRecord record) {
 		assessment1MarkTextField.setText(
 				new Float(record.getAssignment1Mark()).toString());
@@ -531,7 +586,9 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	}
 
 
-
+	/**
+	 * Clears the text fields.
+	 */
 	public void clearStudentMarks() {
 		assessment1MarkTextField.setText("");
 		assessment2MarkTextField.setText("");
@@ -545,18 +602,10 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 
 
 
-	public void enableCheckGradeButton(boolean enable) {
-		checkGradeButton.setEnabled(enable);
-	}
-
-
-
-	public void enableChangeGradeButton(boolean enable) {
-		changeButton.setEnabled(enable);
-	}
-
-
-
+	/**
+	 * Sets all the UI elements to be able to be edited.
+	 * @param enable
+	 */
 	public void enableEditingMarks(boolean enable) {
 		assessment1MarkTextField.setEditable(enable);
 		assessment2MarkTextField.setEditable(enable);
@@ -565,6 +614,28 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 
 
 
+	/**
+	 * Enables the check grade button on the UI.
+	 * @param enable
+	 */
+	public void enableCheckGradeButton(boolean enable) {
+		checkGradeButton.setEnabled(enable);
+	}
+
+
+	/**
+	 * Enables the change grade button on the UI.
+	 * @param enable
+	 */
+	public void enableChangeGradeButton(boolean enable) {
+		changeButton.setEnabled(enable);
+	}
+
+
+	/**
+	 * Enables the save button on the UI.
+	 * @param enable
+	 */
 	public void enableSaveButton(boolean enable) {
 		saveButton.setEnabled(enable);
 	}
