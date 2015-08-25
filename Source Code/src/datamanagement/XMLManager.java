@@ -2,61 +2,114 @@ package datamanagement;
 
 import org.jdom.Document;
 import org.jdom.input.SAXBuilder;
+
 import java.io.FileWriter;
+
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+
 import java.io.IOException;
+
 import org.jdom.JDOMException;
 
-public class XMLManager {
-private static XMLManager self = null;
+/**
+ * The class controls access to the XML Datasource.
+ *
+ * @author Andrew Tobin
+ * @since 2015-08-05
+ */
+public class XmlManager {
 
+    private final static XmlManager instance_ = new XmlManager();
+    private Document document_;
 
-        private Document doc;
-        public static XMLManager getXML() { if (self == null ) self = new XMLManager(); return self;
-}
-    private XMLManager() {init();
-
-    
-    
-    
-}
-
-    
-    
-    
-public void init() {
-        String s = AppProperties.getInstance().getProperties().getProperty("XMLFILE");
-try {
-            SAXBuilder b = new SAXBuilder();
-    b.setExpandEntities(true);
-                        doc = b.build(s);}
-
-
-
-                catch (JDOMException e) {
-System.err.printf( "%s", "DBMD: XMLManager : init : caught JDOMException\n" );
-throw new RuntimeException("DBMD: XMLManager : init : JDOMException");} 
-        catch (IOException e) {
-            System.err.printf( "%s", "DBMD: XMLManager : init : caught IOException\n" );
-            
-            
-            
-throw new RuntimeException("DBMD: XMLManager : init : IOException");
-        }  
-                }      
-    public Document getDocument() {
-        return doc;
+    /**
+     * Return singleton instance
+     * @return
+     */
+    public static XmlManager getInstance() {
+        return instance_;
     }
-    
+
+
+
+    /**
+     * Class constructor
+     */
+    private XmlManager() {
+        initializeDocument();
+    }
+
+
+
+    /**
+     * Initialize the connection to the source document.
+     */
+    public void initializeDocument() {
+        String documentFileName = AppProperties.getInstance()
+                .getProperties().getProperty("XMLFILE");
+
+        try {
+
+            SAXBuilder builder = new SAXBuilder();
+            builder.setExpandEntities(true);
+
+            document_ = builder.build(documentFileName);
+        }
+        catch (JDOMException exception) {
+
+            System.err.printf("%s",
+                    "DBMD: XmlManager : initializeDocument : caught JDOMException\n");
+
+            throw new RuntimeException(
+                    "DBMD: XmlManager : initializeDocument : JDOMException");
+        }
+        catch (IOException exception) {
+
+            System.err.printf("%s",
+                    "DBMD: XmlManager : initializeDocument : caught IOException\n");
+
+            throw new RuntimeException(
+                    "DBMD: XmlManager : initializeDocument : IOException");
+        }
+    }
+
+
+
+    /**
+     * Get the current Xml Document
+     * @return
+     */
+    public Document getDocument() {
+        return document_;
+    }
+
+
+
+    /**
+     * Save the current Xml Document
+     */
     public void saveDocument() {
-        String xmlfile = AppProperties.getInstance().getProperties().getProperty("XMLFILE");
-                try (FileWriter fout = new FileWriter(xmlfile)) {
-XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-    outputter.output(doc, fout);
-                    fout.close();
+        String documentFileName = AppProperties.getInstance()
+                .getProperties().getProperty("XMLFILE");
+
+        try (FileWriter fileStream = new FileWriter(documentFileName)) {
+
+            XMLOutputter outputFormatter = new XMLOutputter(
+                    Format.getPrettyFormat());
+
+            outputFormatter.output(document_, fileStream);
+
+            fileStream.close();
+        }
+        catch (IOException exception) {
+
+            System.err.printf("%s\n",
+                    "DBMD : XmlManager : saveDocument : Error saving XML to "
+                            + documentFileName);
+
+            throw new RuntimeException(
+                    "DBMD: XmlManager : saveDocument : error writing to file");
+        }
+    }
 }
-        catch (IOException ioe) {
-System.err.printf( "%s\n", "DBMD : XMLManager : saveDocument : Error saving XML to " + xmlfile);
-                    throw new RuntimeException("DBMD: XMLManager : saveDocument : error writing to file");
-        }}}

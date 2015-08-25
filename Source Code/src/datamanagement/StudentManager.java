@@ -10,25 +10,20 @@ import java.util.List;
  * @author Zeno Li
  * @since 2015-08-05
  */
-public class StudentManager
-{
+public class StudentManager {
     private static StudentManager self_ = null;
 
     private StudentMap studentMap_;
     private java.util.HashMap<String, StudentMap> unitStudentMap_;
 
 
-
     /**
      * Class constructor.
      */
-    private StudentManager()
-    {
+    private StudentManager() {
         studentMap_ = new StudentMap();
         unitStudentMap_ = new java.util.HashMap<>();
     }
-
-
 
     /**
      * Return static student manager object self_.
@@ -58,12 +53,17 @@ public class StudentManager
     }
 
 
-
+    /**
+     * Get a student from the datasource.
+     *
+     * @param id Student ID
+     * @return XmlElement for Student object
+     */
     private Element getStudentElement(Integer id)
     {
         for (Element element :
              (List<Element>)
-             XMLManager.getXML().getDocument().getRootElement().
+             XmlManager.getInstance().getDocument().getRootElement().
                         getChild("studentTable").getChildren("student"))
             if (id.toString().equals(element.getAttributeValue("sid")))
                 return element;

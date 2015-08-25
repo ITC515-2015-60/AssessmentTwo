@@ -1,176 +1,323 @@
 package datamanagement;
 
+/**
+ * Concrete instance of the Unit class
+ */
 public class Unit implements IUnit {
-	private String uc;
-	private String UN;
-	private float co2;
-	private float co1;
-	private float co4;
-	private float co3;
-	private float co5;
-	private int a1, a2, ex;
+
+	private String unitCode_;
+	private String unitName_;
+
+    private float passCutoff_;
+	private float creditCutoff_;
+	private float distinctionCutoff_;
+	private float highDistinctionCutoff_;
+	private float additionalExaminationCutoff_;
+
+    private int assessment1Weight_;
+    private int assessment2Weight_;
+    private int examWeight_;
 	
-	private StudentUnitRecordList rs;
+	private StudentUnitRecordList studentRecords_;
 
-	public Unit(String UC, String un, float f1, float f2, float f3, float f4,
-			float f5, int i1, int i2, int i3, StudentUnitRecordList rl) {
+	/**
+	 * Constructor for the Unit class, creates a Unit from values assigned.
+	 * @param unitCode
+	 * @param unitName
+	 * @param passCutoff
+	 * @param creditCutoff
+	 * @param distinctionCutoff
+	 * @param highDistinctionCutoff
+	 * @param additionalExaminationCutoff
+	 * @param assessment1Weight
+	 * @param assessment2Weight
+	 * @param examWeight
+	 * @param studentRecords
+	 */
+	public Unit(String unitCode, String unitName, float passCutoff,
+				float creditCutoff, float distinctionCutoff,
+				float highDistinctionCutoff, float additionalExaminationCutoff,
+				int assessment1Weight, int assessment2Weight, int examWeight,
+				StudentUnitRecordList studentRecords) {
 
-		uc = UC;
-		UN = un;
-		co2 = f1;
-		co1 = f2;
-		this.co4 = f3;
-		co3 = f4;
-		this.co5 = f5;
-		this.setAssessmentWeights(i1, i2, i3);
-		rs = rl == null ? new StudentUnitRecordList() : rl;
+		unitCode_ = unitCode;
+		unitName_ = unitName;
+
+		setCutoffs(passCutoff, creditCutoff, distinctionCutoff,
+				highDistinctionCutoff, additionalExaminationCutoff);
+		setAssessmentWeights(assessment1Weight, assessment2Weight, examWeight);
+
+		studentRecords_ = studentRecords == null
+				? new StudentUnitRecordList()
+				: studentRecords;
 	}
 
+
+	/**
+	 * Return the Code for the Subject
+	 * @return
+	 */
 	public String getUnitCode() {
-		return this.uc;
+		return unitCode_;
 	}
 
+
+	/**
+	 * Return the name for the subject
+	 * @return
+	 */
 	public String getUnitName() {
-
-		return this.UN;
+		return unitName_;
 	}
 
-	public void setPsCutoff1(float cutoff) {
-		this.co2 = cutoff;
+
+	/**
+	 * Set the Pass mark cutoff for the subject
+	 * @param cutoff
+	 */
+	public void setPassCutoff(float cutoff) {
+		passCutoff_ = cutoff;
 	}
 
-	public float getPsCutoff() {
-		return this.co2;
+	/**
+	 * Get the Pass mark cutoff for the subject
+	 * @return
+	 */
+	public float getPassCutoff() {
+		return passCutoff_;
 	}
 
-	public void setCrCutoff(float cutoff) {
-		this.co1 = cutoff;
+
+	/**
+	 * Set the Credit mark cutoff for the subject
+	 * @param cutoff
+	 */
+	public void setCreditCutoff(float cutoff) {
+		creditCutoff_ = cutoff;
 	}
 
-	public float getCrCutoff() {
-		return this.co1;
+
+	/**
+	 * Get the Credit mark cutoff for the subject
+	 * @return
+	 */
+	public float getCreditCutoff() {
+		return creditCutoff_;
 	}
 
-	public void setDiCutoff(float cutoff) {
-		this.co4 = cutoff;
+
+	/**
+	 * Set the Distinction mark cutoff for the subject
+	 * @param cutoff
+	 */
+	public void setDistinctionCutoff(float cutoff) {
+		distinctionCutoff_ = cutoff;
 	}
 
-	public float getDiCuttoff() {
-		return this.co4;
+
+	/**
+	 * Get the Distinction mark cutoff for the subject
+	 * @return
+	 */
+	public float getDistinctionCutoff() {
+		return distinctionCutoff_;
 	}
 
-	public void HDCutoff(float cutoff) {
-		this.co3 = cutoff;
+
+	/**
+	 * Set the High Distinction cutoff for the subject
+	 * @param cutoff
+	 */
+	public void setHighDistinctionCutoff(float cutoff) {
+		highDistinctionCutoff_ = cutoff;
 	}
 
-	public void setHdCutoff(float cutoff) {
-		this.co3 = cutoff;
+
+	/**
+	 * Get the High Distinction cutoff for the subject
+	 * @return
+	 */
+	public float getHighDistinctionCutoff() {
+		return highDistinctionCutoff_;
 	}
 
-	public float getHdCutoff() {
-		return this.co3;
 
+	/**
+	 * Set the Additional Exam cutoff for the subject
+	 * @param cutoff
+	 */
+	public void setAdditionalExamCutoff(float cutoff) {
+		additionalExaminationCutoff_ = cutoff;
 	}
 
-	public void setAeCutoff(float cutoff) {
-		this.co5 = cutoff;
+
+	/**
+	 * Get the Additional Exam cutoff for the subject
+	 * @return
+	 */
+	public float getAdditionalExamCutoff() {
+		return additionalExaminationCutoff_;
 	}
 
-	public float getAeCutoff() {
-		return this.co5;
-	}
 
+	/**
+	 * Add a student record to the subject's student collection
+	 * @param record
+	 */
 	public void addStudentRecord(IStudentUnitRecord record) {
-		rs.add(record);
+		studentRecords_.add(record);
 	}
 
-	public IStudentUnitRecord getStudentRecord(int studentID) {
-		for (IStudentUnitRecord r : rs) {
-			if (r.getStudentID() == studentID)
-				return r;
+
+	/**
+	 * Get a student's record for the subject from the collection
+	 * @param studentId
+	 * @return
+	 */
+	public IStudentUnitRecord getStudentRecord(int studentId) {
+		for (IStudentUnitRecord record : studentRecords_) {
+			if (record.getStudentID() == studentId)
+                return record;
 		}
+
 		return null;
 	}
 
-	public StudentUnitRecordList listStudentRecords() {
-		return rs;
+	/**
+	 * Get all student records for the subject
+	 * @return
+	 */
+	public StudentUnitRecordList getStudentRecords() {
+        return studentRecords_;
 	}
 
+
+	/**
+	 * Get the weighting for the first assessment
+	 * @return
+	 */
 	@Override
-	public int getAsg1Weight() {
-		return a1;
+	public int getAssessment1Weight() {
+		return assessment1Weight_;
 	}
 
+
+	/**
+	 * Get the weighting for the second assessment
+	 * @return
+	 */
 	@Override
-	public int getAsg2Weight() {
-		return a2;
+	public int getAssessment2Weight() {
+		return assessment2Weight_;
 	}
 
+
+	/**
+	 * Get the weighting for the exam
+	 * @return
+	 */
 	@Override
 	public int getExamWeight() {
-		return ex;
+		return examWeight_;
 	}
 
+
+	/**
+	 * Set the assessment and exam weightings for the subject.
+	 * @param assessment1Weight
+	 * @param assessment2Weight
+	 * @param examWeight
+	 */
 	@Override
-	public void setAssessmentWeights(int a1, int a2, int ex) {
-		if (a1 < 0 || a1 > 100 ||
-			a2 < 0 || a2 > 100 ||
-			ex < 0 || ex > 100 ) {
-			throw new RuntimeException("Assessment weights cant be less than zero or greater than 100");
-		}			
-		if (a1 + a2 + ex != 100) {
+	public void setAssessmentWeights(int assessment1Weight,
+									 int assessment2Weight, int examWeight) {
+		if (assessment1Weight < 0 || assessment1Weight > 100 ||
+			assessment2Weight < 0 || assessment2Weight > 100 ||
+			examWeight < 0 || examWeight > 100 ) {
+			throw new RuntimeException(
+					"Assessment weights cant be less than zero or greater than 100");
+		}
+
+		if (assessment1Weight + assessment2Weight + examWeight != 100) {
 			throw new RuntimeException("Assessment weights must add to 100");
 		}
-		this.a1 = a1;
-		this.a2 = a2;
-		this.ex = ex;			
+
+		assessment1Weight_ = assessment1Weight;
+		assessment2Weight_ = assessment2Weight;
+		examWeight_ = examWeight;
 	}
-	
-	private void setCutoffs( float ps, float cr, float di, float hd, float ae) {
-		if (ps < 0 || ps > 100 ||
-			cr < 0 || cr > 100 ||
-			di < 0 || di > 100 ||
-			hd < 0 || hd > 100 ||
-			ae < 0 || ae > 100 ) {
-			throw new RuntimeException("Assessment cutoffs cant be less than zero or greater than 100");
+
+
+	/**
+	 * Set the cutoff marks for the grades for the subject
+	 * @param passCutoff
+	 * @param creditCutoff
+	 * @param distinctionCutoff
+	 * @param highDistinctionCutoff
+	 * @param additionalExaminationCutoff
+	 */
+	private void setCutoffs(float passCutoff, float creditCutoff,
+							float distinctionCutoff, float highDistinctionCutoff,
+							float additionalExaminationCutoff) {
+
+		if (passCutoff < 0 || passCutoff > 100 ||
+			creditCutoff < 0 || creditCutoff > 100 ||
+			distinctionCutoff < 0 || distinctionCutoff > 100 ||
+			highDistinctionCutoff < 0 || highDistinctionCutoff > 100 ||
+			additionalExaminationCutoff < 0 || additionalExaminationCutoff > 100 ) {
+			throw new RuntimeException(
+					"Assessment cutoffs cant be less than zero or greater than 100");
 		}
-		if (ae >= ps) {
+
+		if (additionalExaminationCutoff >= passCutoff)
 			throw new RuntimeException("AE cutoff must be less than PS cutoff");
-		}
-		if (ps >= cr) {
+
+        if (passCutoff >= creditCutoff)
 			throw new RuntimeException("PS cutoff must be less than CR cutoff");
-		}
-		if (cr >= di) {
+
+        if (creditCutoff >= distinctionCutoff)
 			throw new RuntimeException("CR cutoff must be less than DI cutoff");
-		}
-		if (di >= hd) {
+
+        if (distinctionCutoff >= highDistinctionCutoff)
 			throw new RuntimeException("DI cutoff must be less than HD cutoff");
-		}
 
+        passCutoff_ = passCutoff;
+        creditCutoff_ = creditCutoff;
+        distinctionCutoff_ = distinctionCutoff;
+        highDistinctionCutoff_ = highDistinctionCutoff;
+        additionalExaminationCutoff_ = additionalExaminationCutoff;
 	}
-	
-	public String getGrade(float f1, float f2, float f3) {
-		float t = f1 + f2 + f3;
+
+
+	/**
+	 * Get a student's grade for the subject based on their marks
+	 * @param assessment1Score
+	 * @param assessment2Score
+	 * @param examScore
+	 * @return
+	 */
+	public String getGrade(float assessment1Score, float assessment2Score,
+						   float examScore) {
+		float totalScore = assessment1Score + assessment2Score + examScore;
 		
-		if (f1 < 0 || f1 > a1 ||
-			f2 < 0 || f2 > a2 ||
-			f3 < 0 || f3 > ex ) {
-			throw new RuntimeException("marks cannot be less than zero or greater than assessment weights");
+		if (assessment1Score < 0 || assessment1Score > assessment1Weight_ ||
+			assessment2Score < 0 || assessment2Score > assessment2Weight_ ||
+			examScore < 0 || examScore > examWeight_) {
+			throw new RuntimeException(
+					"Marks cannot be less than zero or greater than assessment weights");
 		}
 
-		if (t < co5) {
+		if (totalScore < additionalExaminationCutoff_)
 			return "FL";
-		} else if (t < co2)
+		else if (totalScore < passCutoff_)
 			return "AE";
-		else if (t < co1)
+		else if (totalScore < creditCutoff_)
 			return "PS";
-		else if (t < co4)
+		else if (totalScore < distinctionCutoff_)
 			return "CR";
-		else if (t < co3)
+		else if (totalScore < highDistinctionCutoff_)
 			return "DI";
 		else
 			return "HD";
 	}
-
-	
 }

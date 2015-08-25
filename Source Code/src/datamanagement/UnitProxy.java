@@ -1,62 +1,217 @@
 package datamanagement;
+
+/**
+ * The class controls wraps access to the Unit object.
+ *
+ * @author Andrew Tobin
+ * @since 2015-08-05
+ */
 public class UnitProxy implements IUnit {
-private String UC;
-        private String un;
 
-        
-        UnitManager   um;
+    private String unitCode_;
+    private String unitName_;
+    private UnitManager unitManager_;
 
-    public UnitProxy( String unitCode, String unitName ) {
-        this.UC = unitCode;
-            this.un = unitName;
-                um = UnitManager.UM(); }
-    public String getUnitCode() { 
-        return this.UC;}
-        public String getUnitName() { 
-            return this.un; 
-        }
-    public void setPsCutoff1(float cutoff) {
-        um.getUnit(UC).setPsCutoff1(cutoff);
-}
-public float getPsCutoff() {
-        return um.getUnit(UC).getPsCutoff();}
-    public void setCrCutoff(float cutoff) {um.getUnit(UC).setCrCutoff(cutoff);
-    }
-    public float getCrCutoff() {
-return um.getUnit(UC).getCrCutoff();
+    /**
+     * Constructor for the wrapper class.
+     * @param unitCode Code for the subject.
+     * @param unitName Subject name.
+     */
+    public UnitProxy(String unitCode, String unitName) {
+        unitCode_ = unitCode;
+        unitName_ = unitName;
+
+        unitManager_ = UnitManager.getInstance();
     }
 
-public void setDiCutoff(float cutoff) {um.getUnit(UC).setDiCutoff(cutoff);}
-    public float getDiCuttoff() {return um.getUnit(UC).getDiCuttoff();}
-public void setHdCutoff(float cutoff) {
-    um.getUnit(UC).setHdCutoff(cutoff);}
-    public float getHdCutoff() {
 
-        return um.getUnit(UC).getHdCutoff();}
-public void setAeCutoff(float cutoff) {um.getUnit(UC).setAeCutoff(cutoff);
+    /**
+     * Cet Subject Code.
+     * @return
+     */
+    public String getUnitCode() {
+        return unitCode_;
     }
-    public float getAeCutoff() {return um.getUnit(UC).getAeCutoff();}
-public String getGrade(float f1, float f2, float f3) {
-return um.getUnit(UC).getGrade(f1, f2, f3);
+
+
+    /**
+     * Get Subject Name.
+     * @return
+     */
+    public String getUnitName() {
+        return unitName_;
     }
-    public void addStudentRecord(IStudentUnitRecord record) 
-{ 
-um.getUnit(UC).addStudentRecord(record);
+
+
+    /**
+     * Set the cutoff mark required for a Pass.
+     * @param cutoff
+     */
+    public void setPassCutoff(float cutoff) {
+        unitManager_.getUnit(unitCode_).setPassCutoff(cutoff);
     }
-    public IStudentUnitRecord getStudentRecord(int s) {return um.getUnit(UC).getStudentRecord(s);}
-public StudentUnitRecordList listStudentRecords() {
-    return um.getUnit(UC).listStudentRecords();
+
+
+    /**
+     * Get the cutoff mark required for a Pass.
+     * @return
+     */
+    public float getPassCutoff() {
+        return unitManager_.getUnit(unitCode_).getPassCutoff();
+    }
+
+
+    /**
+     * Set the cutoff mark required for a Credit.
+     * @param cutoff
+     */
+    public void setCreditCutoff(float cutoff) {
+        unitManager_.getUnit(unitCode_).setCreditCutoff(cutoff);
+    }
+
+
+    /**
+     * Get the cutoff mark required for a Credit.
+     * @return
+     */
+    public float getCreditCutoff() {
+        return unitManager_.getUnit(unitCode_).getCreditCutoff();
+    }
+
+
+    /**
+     * Set the cutoff mark required for a Distinction.
+     * @param cutoff
+     */
+    public void setDistinctionCutoff(float cutoff) {
+        unitManager_.getUnit(unitCode_).setDistinctionCutoff(cutoff);
+    }
+
+
+    /**
+     * Get the cutoff mark required for a Distinction.
+     * @return
+     */
+    public float getDistinctionCutoff() {
+        return unitManager_.getUnit(unitCode_).getDistinctionCutoff();
+    }
+
+
+    /**
+     * Set the cutoff mark required for a High Distinction.
+     * @param cutoff
+     */
+    public void setHighDistinctionCutoff(float cutoff) {
+        unitManager_.getUnit(unitCode_).setHighDistinctionCutoff(cutoff);
+    }
+
+
+    /**
+     * Get the cutoff mark required for a High Distinction.
+     * @return
+     */
+    public float getHighDistinctionCutoff() {
+
+        return unitManager_.getUnit(unitCode_).getHighDistinctionCutoff();
+    }
+
+
+    /**
+     * Set the cutoff mark required for an Additional Exam.
+     * @param cutoff
+     */
+    public void setAdditionalExamCutoff(float cutoff) {
+        unitManager_.getUnit(unitCode_).setAdditionalExamCutoff(cutoff);
+    }
+
+
+    /**
+     * Get the cutoff mark required for an Additional Exam.
+     * @return
+     */
+    public float getAdditionalExamCutoff() {
+        return unitManager_.getUnit(unitCode_).getAdditionalExamCutoff();
+    }
+
+
+    /**
+     * Get the appropriate grade given a set of scores.
+     * @param assessment1Score
+     * @param assessment2Score
+     * @param examScore
+     * @return
+     */
+    public String getGrade(float assessment1Score, float assessment2Score,
+                           float examScore) {
+        return unitManager_.getUnit(unitCode_).getGrade(assessment1Score,
+                assessment2Score, examScore);
+    }
+
+
+    /**
+     * Add a student record to the class subject.
+     * @param record
+     */
+    public void addStudentRecord(IStudentUnitRecord record) {
+        unitManager_.getUnit(unitCode_).addStudentRecord(record);
+    }
+
+
+    /**
+     * Get a student's record from the class subject.
+     * @param studentId
+     * @return
+     */
+    public IStudentUnitRecord getStudentRecord(int studentId) {
+        return unitManager_.getUnit(unitCode_).getStudentRecord(studentId);
+    }
+
+
+    /**
+     * Get all student records for the subject.
+     * @return
+     */
+    public StudentUnitRecordList getStudentRecords() {
+        return unitManager_.getUnit(unitCode_).getStudentRecords();
+    }
+
+
+    /**
+     * Get the weighting for the first assessment for the subject.
+     * @return
+     */
+    public int getAssessment1Weight() {
+        return unitManager_.getUnit(unitCode_).getAssessment1Weight();
+    }
+
+
+    /**
+     * Get the weighting for the second assessment for the subject.
+     * @return
+     */
+    public int getAssessment2Weight() {
+        return unitManager_.getUnit(unitCode_).getAssessment2Weight();
+    }
+
+
+    /**
+     * Get the weighting for the exam for the subject.
+     * @return
+     */
+    public int getExamWeight() {
+        return unitManager_.getUnit(unitCode_).getExamWeight();
+    }
+
+
+    /**
+     * Set the weightings for the assessments and exam for the subject.
+     * @param assessment1Weight
+     * @param assessment2Weight
+     * @param examWeight
+     */
+    public void setAssessmentWeights(int assessment1Weight,
+                                     int assessment2Weight, int examWeight) {
+        unitManager_.getUnit(unitCode_).setAssessmentWeights(assessment1Weight,
+                assessment2Weight, examWeight);
+    }
 }
-public int getAsg1Weight() {
-	return um.getUnit(UC).getAsg1Weight();
-}
-public int getAsg2Weight() {
-	return um.getUnit(UC).getAsg2Weight();
-}
-public int getExamWeight() {
-	return um.getUnit(UC).getExamWeight();
-}
-public void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt) {
-	um.getUnit(UC).setAssessmentWeights(asg1Wgt, asg2Wgt, examWgt);
-	
-}}

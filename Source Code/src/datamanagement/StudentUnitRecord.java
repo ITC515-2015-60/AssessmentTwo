@@ -36,7 +36,6 @@ public class StudentUnitRecord
     }
 
 
-
     /**
      * Return student ID.
      *
@@ -69,7 +68,7 @@ public class StudentUnitRecord
     public void setAssignment1Mark(float mark)
     {
         if (mark < 0 ||
-            mark > UnitManager.UM().getUnit(unitCode_).getAsg1Weight())
+            mark > UnitManager.getInstance().getUnit(unitCode_).getAssessment1Weight())
             throw new RuntimeException("Mark cannot be less than zero " +
                                        "or greater than assessment weight");
 
@@ -97,7 +96,7 @@ public class StudentUnitRecord
      */
     public void setAssignment2Mark(float mark) {
         if (mark < 0 ||
-                mark > UnitManager.UM().getUnit(unitCode_).getAsg2Weight())
+                mark > UnitManager.getInstance().getUnit(unitCode_).getAssessment2Weight())
             throw new RuntimeException("Mark cannot be less than zero " +
                                        "or greater than assessment weight");
 
@@ -125,7 +124,7 @@ public class StudentUnitRecord
      */
     public void setExamMark(float mark) {
         if (mark < 0 ||
-                mark > UnitManager.UM().getUnit(unitCode_).getExamWeight())
+                mark > UnitManager.getInstance().getUnit(unitCode_).getExamWeight())
             throw new RuntimeException("Mark cannot be less than zero or " +
                                        "greater than assessment weight");
 

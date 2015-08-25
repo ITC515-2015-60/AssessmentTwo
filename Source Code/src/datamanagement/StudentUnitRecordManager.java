@@ -58,10 +58,10 @@ public class StudentUnitRecordManager
                                                    String unitCode)
     {
         IStudentUnitRecord record = studentUnitRecordMap_.
-                                    get(studentID.toString() + unitCode);
+                get(studentID.toString() + unitCode);
 
         return record != null ? record :
-                         createStudentUnitRecord(studentID, unitCode);
+                createStudentUnitRecord(studentID, unitCode);
     }
 
 
@@ -71,14 +71,14 @@ public class StudentUnitRecordManager
         IStudentUnitRecord record;
 
         for (Element element : (List<Element>)
-             XMLManager.getXML().getDocument().getRootElement().
+                XmlManager.getInstance().getDocument().getRootElement().
                         getChild("studentUnitRecordTable").
                         getChildren("record")) {
             String recordStudentId = element.getAttributeValue("sid");
             String recordUnitCode = element.getAttributeValue("uid");
 
             if (studentId.toString().equals(recordStudentId) &&
-                unitCode.equals(recordUnitCode)) {
+                    unitCode.equals(recordUnitCode)) {
                 float assignment1 = new Float(
                         element.getAttributeValue("asg1")).floatValue();
                 float assignment2 = new Float(
@@ -87,17 +87,17 @@ public class StudentUnitRecordManager
                         element.getAttributeValue("exam")).floatValue();
 
                 record = new StudentUnitRecord(studentId, unitCode,
-                                               assignment1, assignment2, exam);
+                        assignment1, assignment2, exam);
 
                 studentUnitRecordMap_.put(record.getStudentID().toString() +
-                                          record.getUnitCode(), record);
+                        record.getUnitCode(), record);
 
                 return record;
             }
         }
 
         throw new RuntimeException("DBMD: createStudent : " +
-                                   "student unit record not in file");
+                "student unit record not in file");
     }
 
 
@@ -118,7 +118,7 @@ public class StudentUnitRecordManager
 
         recordList = new StudentUnitRecordList();
         for (Element element : (List<Element>)
-             XMLManager.getXML().getDocument().getRootElement().
+                XmlManager.getInstance().getDocument().getRootElement().
                         getChild("studentUnitRecordTable").
                         getChildren("record")) {
             String recordUnitCode = element.getAttributeValue("uid");
@@ -127,7 +127,7 @@ public class StudentUnitRecordManager
                 Integer recordStudentId = new Integer(element.getAttributeValue("sid"));
 
                 recordList.add(new StudentUnitRecordProxy(recordStudentId,
-                                                          recordUnitCode));
+                        recordUnitCode));
             }
         }
 
@@ -156,7 +156,7 @@ public class StudentUnitRecordManager
 
         recordList = new StudentUnitRecordList();
         for (Element element : (List<Element>)
-             XMLManager.getXML().getDocument().getRootElement().
+                XmlManager.getInstance().getDocument().getRootElement().
                         getChild("studentUnitRecordTable").
                         getChildren("record")) {
             String recordStudentId = element.getAttributeValue("sid");
@@ -165,7 +165,7 @@ public class StudentUnitRecordManager
                 String recordUnitCode = element.getAttributeValue("uid");
 
                 recordList.add(new StudentUnitRecordProxy(studentID,
-                                                          recordUnitCode));
+                        recordUnitCode));
             }
         }
 
@@ -186,7 +186,7 @@ public class StudentUnitRecordManager
     public void saveRecord(IStudentUnitRecord studentUnitRecord)
     {
         for (Element element : (List<Element>)
-             XMLManager.getXML().getDocument().getRootElement().
+                XmlManager.getInstance().getDocument().getRootElement().
                         getChild("studentUnitRecordTable").
                         getChildren("record")) {
             Integer studentId = studentUnitRecord.getStudentID();
@@ -196,7 +196,7 @@ public class StudentUnitRecordManager
             String recordUnitCode = element.getAttributeValue("uid");
 
             if (studentId.toString().equals(recordStudentId) &&
-                unitCode.equals(recordUnitCode)) {
+                    unitCode.equals(recordUnitCode)) {
                 String assignment1Mark = new Float(
                         studentUnitRecord.getAssignment1Mark()).toString();
                 String assignment2Mark = new Float(
@@ -209,13 +209,13 @@ public class StudentUnitRecordManager
                 element.setAttribute("exam", examMark);
 
                 //write out the XML file for continuous save
-                XMLManager.getXML().saveDocument();
+                XmlManager.getInstance().saveDocument();
 
                 return;
             }
         }
 
         throw new RuntimeException("DBMD: saveRecord : " +
-                                   "no such student record in data");
+                "no such student record in data");
     }
 }
