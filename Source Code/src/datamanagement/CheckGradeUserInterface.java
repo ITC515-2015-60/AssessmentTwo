@@ -40,7 +40,6 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	private Integer studentId_;
 
 	// Connections to the view objects
-	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private JButton changeButton;
 	private JButton checkGradeButton;
 	private JButton saveButton;
@@ -419,6 +418,7 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 		clearStudents();
 
 		if (event.getStateChange() == ItemEvent.SELECTED) {
+
 			if (selectedUnit.equals((String) unitsListComboBox.getItemAt(0))) {
 				selectedUnit = "NONE";
 			}
@@ -436,13 +436,16 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	private void studentRecordsComboBoxItemStateChanged(ItemEvent event) {// GEN-FIRST:event_jComboBox2ItemStateChanged
 		clearStudentMarks();
 		String sekectedStudent = (String) studentRecordsComboBox.getSelectedItem();
+
 		if (event.getStateChange() == ItemEvent.SELECTED) {
+
 			if (sekectedStudent.equals((String) studentRecordsComboBox.getItemAt(0))) {
 				studentId_ = new Integer(0);
 				checkGradeControl_.studentSelected(studentId_);
 			} else {
 				studentId_ = new Integer(sekectedStudent.split("\\s")[0]);
 			}
+
 			checkGradeControl_.studentSelected(studentId_);
 		}
 	}// GEN-LAST:event_jComboBox2ItemStateChanged
@@ -456,8 +459,9 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	private void saveButtonActionPerformed(ActionEvent event) {// GEN-FIRST:event_jButton3ActionPerformed
 		assessment1Mark_ = new Float(assessment1MarkTextField.getText()).floatValue();
 		assessment2Mark_ = new Float(assessment2MarkTextField.getText()).floatValue();
+
 		examMark_ = new Float(examMarkTextField.getText()).floatValue();
-		//lblErrMsg.setText("");
+
 		try {
 			String studentGrade = checkGradeControl_
 					.checkGrade(assessment1Mark_, assessment2Mark_, examMark_);
@@ -499,14 +503,17 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	private void checkGradeButtonActionPerformed(ActionEvent event) {// GEN-FIRST:event_jButton2ActionPerformed
 		float assessment1Mark =
 				new Float(assessment1MarkTextField.getText()).floatValue();
+
 		float assessment2Mark =
 				new Float(assessment2MarkTextField.getText()).floatValue();
+
 		float examMark = new Float(examMarkTextField.getText()).floatValue();
+
 		errorMessageLabel.setText("");
+
 		try {
 			checkGradeControl_.saveGrade(assessment1Mark, assessment2Mark,
 					examMark);
-			//saveButtonActionPerformed(null);
 		}
 		catch (RuntimeException exceptionMessage) {
 			errorMessageLabel.setText(exceptionMessage.getMessage());
@@ -579,9 +586,12 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 	public void setRecord(IStudentUnitRecord record) {
 		assessment1MarkTextField.setText(
 				new Float(record.getAssignment1Mark()).toString());
+
 		assessment2MarkTextField.setText(
 				new Float(record.getAssignment2Mark()).toString());
+
 		examMarkTextField.setText(new Float(record.getExamMark()).toString());
+
 		gradeLabel.setText("");
 	}
 
@@ -595,6 +605,7 @@ public class CheckGradeUserInterface extends JFrame implements IUnitLister,
 		examMarkTextField.setText("");
 		gradeLabel.setText("");
 		errorMessageLabel.setText("");
+
 		assessment1MarkTextField.setEditable(false);
 		assessment2MarkTextField.setEditable(false);
 		examMarkTextField.setEditable(false);
