@@ -6,26 +6,27 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * This class instantiates the properties for the App
+ * This class instantiates the properties for the App.
  *
  * @author Pat Barilla
  * @since 2015-08-05
  */
 
-public class AppProperties {
+public class AppProperties
+{
 
-    private static AppProperties self = null;
+    final static AppProperties instance_ = null;
 
     private Properties properties_;
 
     /**
-     * Gets an instance of the Class
+     * Gets an instance of the Class.
      *
-     * @return AppProperties
+     * @return AppProperties instance_
      */
     public static AppProperties getInstance() {
-        if (self == null ) {
-            self = new AppProperties();
+        if (instance_ == null ) {
+            instance_ = new AppProperties();
         }
         return self;
     }
@@ -33,7 +34,7 @@ public class AppProperties {
     /**
      * Loads properties based on a file.
      *
-     * @throws RuntimeException if properties cannot be read
+     * @throws RuntimeException if properties cannot be read.
      */
     private AppProperties() {
         properties_ = new Properties();
@@ -46,7 +47,7 @@ public class AppProperties {
     }
 
     /**
-     * Returns the private Properties object
+     * Returns the private Properties object.
      *
      * @return Properties properties_
      */
