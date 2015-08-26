@@ -1,4 +1,7 @@
 package datamanagement;
 
 public class Main {
-    public static void main(String[] p) {new CheckGradeControl().initialize();}    }
+    public static void main(String[] p) {
+        new CheckGradeControl().initialize();
+    }
+}
