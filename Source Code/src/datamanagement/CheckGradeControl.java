@@ -56,7 +56,7 @@ public class CheckGradeControl {
 			checkGradeUserInterface_.enableStudentRecordsComboBox(false);
 		}
 		else {
-			ListStudentsCTL listStudentsControl = new ListStudentsCTL();
+			ListStudentsControl listStudentsControl = new ListStudentsControl();
 			listStudentsControl.listStudents(checkGradeUserInterface_, unitCode);
 
 			currentUnitCode_ = unitCode;
