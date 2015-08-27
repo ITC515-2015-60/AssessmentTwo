@@ -1,12 +1,14 @@
 package datamanagement;
 
 import java.util.List;
+
 import org.jdom.Element;
 
 /**
  *  Class for control manager for the Unit objects
  */
-public class UnitManager {
+public class UnitManager
+{
 
     private final static UnitManager instance_ = new UnitManager();
 
@@ -84,7 +86,8 @@ public class UnitManager {
     public UnitMap getUnitMap() {
 
         UnitMap unitMap = new UnitMap();
-		for (Element element : (List<Element>) XmlManager.getInstance()
+
+			for (Element element : (List<Element>) XmlManager.getInstance()
                 .getDocument().getRootElement()
                 .getChild("unitTable").getChildren("unit")) {
             IUnit unit = new UnitProxy(element.getAttributeValue("uid"),

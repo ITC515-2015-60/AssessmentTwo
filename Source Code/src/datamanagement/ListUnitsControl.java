@@ -8,7 +8,8 @@ package datamanagement;
  * @since 2015-08-05
  */
 
-public class ListUnitsControl {
+public class ListUnitsControl
+{
 
     private UnitManager unitManager_;
 
@@ -26,8 +27,8 @@ public class ListUnitsControl {
 
         UnitMap units = unitManager_.getUnitMap();
 
-        for (String i : units.keySet()) {
-            IUnit unit = units.get(i);
+        for (String key : units.keySet()) {
+            IUnit unit = units.get(key);
             unitLister.addUnit(unit);
         }
     }

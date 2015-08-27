@@ -30,6 +30,7 @@ public class StudentUnitRecord
     {
         this.studentId_ = id;
         this.unitCode_ = unitCode;
+
         this.setAssignment1Mark(assignment1Mark);
         this.setAssignment2Mark(assignment2Mark);
         this.setExamMark(examMark);
@@ -82,10 +83,7 @@ public class StudentUnitRecord
      *
      * @return Assignment 1 mark.
      */
-    public float getAssignment1Mark() {
-
-        return assignment1Mark_;
-    }
+    public float getAssignment1Mark() {  return assignment1Mark_; }
 
 
 

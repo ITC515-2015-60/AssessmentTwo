@@ -1,5 +1,7 @@
 package datamanagement;
 
+import java.util.ArrayList;
+
 /**
  * The class represents a student-unit record list.
  *
@@ -7,7 +9,7 @@ package datamanagement;
  * @since 2015-08-05
  */
 public class StudentUnitRecordList
-    extends java.util.ArrayList<IStudentUnitRecord>
+    extends ArrayList<IStudentUnitRecord>
 {
 
 }
