@@ -117,9 +117,9 @@ public class Student
      */
     public IStudentUnitRecord getUnitRecord(String unitCode)
     {
-        for (IStudentUnitRecord r : studentUnitRecordList_)
-            if (r.getUnitCode().equals(unitCode))
-                return r;
+        for (IStudentUnitRecord record : studentUnitRecordList_)
+            if (record.getUnitCode().equals(unitCode))
+                return record;
 
         return null;
     }

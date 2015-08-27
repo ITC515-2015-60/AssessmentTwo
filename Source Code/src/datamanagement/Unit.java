@@ -176,7 +176,7 @@ public class Unit implements IUnit {
 	 */
 	public IStudentUnitRecord getStudentRecord(int studentId) {
 		for (IStudentUnitRecord record : studentRecords_) {
-			if (record.getStudentID() == studentId)
+			if (record.getStudentId() == studentId)
                 return record;
 		}
 

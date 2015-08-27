@@ -85,7 +85,7 @@ public class CheckGradeControl {
 			checkGradeUserInterface_.enableSaveButton(false);
 		}
 		else {
-			IStudent student = StudentManager.getSelf().getStudent(studentId);
+			IStudent student = StudentManager.getInstance().getStudent(studentId);
 
 			IStudentUnitRecord studentUnitRecord =
 					student.getUnitRecord(currentUnitCode_);
@@ -154,7 +154,7 @@ public class CheckGradeControl {
 						  float assessment2Mark,
 						  float examMark) {
 
-		IStudent student = StudentManager.getSelf()
+		IStudent student = StudentManager.getInstance()
 				.getStudent(currentStudentId_);
 
 		IStudentUnitRecord studentUnitRecord =
@@ -164,7 +164,7 @@ public class CheckGradeControl {
 		studentUnitRecord.setAssignment2Mark(assessment2Mark);
 		studentUnitRecord.setExamMark(examMark);
 
-		StudentUnitRecordManager.getSelf().saveRecord(studentUnitRecord);
+		StudentUnitRecordManager.getInstance().saveRecord(studentUnitRecord);
 
 		checkGradeUserInterface_.enableChangeGradeButton(true);
 		checkGradeUserInterface_.enableEditingMarks(false);

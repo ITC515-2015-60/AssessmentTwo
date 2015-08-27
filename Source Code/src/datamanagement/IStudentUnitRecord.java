@@ -12,7 +12,7 @@ public interface IStudentUnitRecord {
     /**
      * Gets the Student ID.
      */
-    public Integer getStudentID();
+    public Integer getStudentId();
 
     /**
      * Gets the Unit Code.

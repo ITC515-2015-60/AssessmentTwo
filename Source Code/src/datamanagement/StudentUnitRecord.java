@@ -41,7 +41,7 @@ public class StudentUnitRecord
      *
      * @return Student ID.
      */
-    public Integer getStudentID()
+    public Integer getStudentId()
     {
         return studentId_;
     }

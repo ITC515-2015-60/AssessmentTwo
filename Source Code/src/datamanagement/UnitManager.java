@@ -42,6 +42,7 @@ public class UnitManager {
     }
 
 
+
     /**
      * Creates a new Unit into the collection
      * @param unitCode
@@ -64,7 +65,7 @@ public class UnitManager {
                         Integer.valueOf(element.getAttributeValue("asg1wgt")).intValue(),
                         Integer.valueOf(element.getAttributeValue("asg2wgt")).intValue(),
                         Integer.valueOf(element.getAttributeValue("examwgt")).intValue(),
-                        StudentUnitRecordManager.getSelf().getRecordsByUnit(unitCode));
+                        StudentUnitRecordManager.getInstance().getRecordsByUnit(unitCode));
 
                 unitMap_.put(unit.getUnitCode(), unit);
 
