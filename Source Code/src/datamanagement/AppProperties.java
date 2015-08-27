@@ -14,8 +14,7 @@ import java.io.IOException;
 
 public class AppProperties
 {
-
-    final static AppProperties instance_ = null;
+    private final static AppProperties instance_ = new AppProperties();
 
     private Properties properties_;
 
@@ -25,10 +24,7 @@ public class AppProperties
      * @return AppProperties instance_
      */
     public static AppProperties getInstance() {
-        if (instance_ == null ) {
-            instance_ = new AppProperties();
-        }
-        return self;
+        return instance_;
     }
 
     /**
