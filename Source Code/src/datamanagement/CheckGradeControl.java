@@ -6,7 +6,8 @@ package datamanagement;
  * @author Andrew Tobin
  * @since 2015-08-05
  */
-public class CheckGradeControl {
+public class CheckGradeControl
+{
 
 	private CheckGradeUserInterface checkGradeUserInterface_;
 	private String currentUnitCode_ = null;

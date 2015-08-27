@@ -1,15 +1,13 @@
 package datamanagement;
 
-import org.jdom.Document;
-import org.jdom.input.SAXBuilder;
 
 import java.io.FileWriter;
-
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-
 import java.io.IOException;
 
+import org.jdom.Document;
+import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 import org.jdom.JDOMException;
 
 /**
@@ -18,7 +16,8 @@ import org.jdom.JDOMException;
  * @author Andrew Tobin
  * @since 2015-08-05
  */
-public class XmlManager {
+public class XmlManager
+{
 
     private final static XmlManager instance_ = new XmlManager();
     private Document document_;
@@ -95,8 +94,8 @@ public class XmlManager {
 
         try (FileWriter fileStream = new FileWriter(documentFileName)) {
 
-            XMLOutputter outputFormatter = new XMLOutputter(
-                    Format.getPrettyFormat());
+            XMLOutputter outputFormatter =
+                    new XMLOutputter(Format.getPrettyFormat());
 
             outputFormatter.output(document_, fileStream);
 

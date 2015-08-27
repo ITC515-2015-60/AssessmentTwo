@@ -3,7 +3,9 @@ package datamanagement;
 /**
  * Concrete instance of the Unit class
  */
-public class Unit implements IUnit {
+public class Unit
+		implements IUnit
+{
 
 	private String unitCode_;
 	private String unitName_;

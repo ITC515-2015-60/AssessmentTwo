@@ -1,5 +1,8 @@
 package datamanagement;
 
+import java.util.HashMap;
+
+
 /**
  * The class represents a student map of student ID and student object.
  *
@@ -7,7 +10,7 @@ package datamanagement;
  * @since 2015-08-05
  */
 public class StudentMap
-    extends java.util.HashMap<Integer, IStudent>
+    extends HashMap<Integer, IStudent>
 {
 
 }

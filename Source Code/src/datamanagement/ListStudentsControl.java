@@ -8,7 +8,8 @@ package datamanagement;
  * @since 2015-08-05
  */
 
-public class ListStudentsControl {
+public class ListStudentsControl
+{
 
     private StudentManager studentManager_;
 
@@ -24,6 +25,7 @@ public class ListStudentsControl {
      */
     public void listStudents(IStudentLister lister, String unitCode) {
         lister.clearStudents();
+
         StudentMap students = studentManager_.getStudentsByUnit(unitCode);
 
         for (Integer i : students.keySet()) {

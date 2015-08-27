@@ -3,17 +3,18 @@ package datamanagement;
 /**
  * Unit Lister
  */
-public interface IUnitLister {
+public interface IUnitLister
+{
 
     /**
      * Clears all the Units from the lister.
      */
-    public void clearUnits();
+    void clearUnits();
 
     /**
      * Adds a Unit to the Lister.
      *
      * @param unit
      */
-    public void addUnit(IUnit unit);
+    void addUnit(IUnit unit);
 }

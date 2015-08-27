@@ -62,8 +62,8 @@ public class StudentUnitRecordProxy
     public void setAssignment1Mark(float mark)
     {
         studentUnitRecordManager_.
-               getStudentUnitRecord(studentId_, unitCode_).
-               setAssignment1Mark(mark);
+               getStudentUnitRecord(studentId_, unitCode_)
+                .setAssignment1Mark(mark);
     }
 
 
@@ -75,9 +75,9 @@ public class StudentUnitRecordProxy
      */
     public float getAssignment1Mark()
     {
-        return studentUnitRecordManager_.
-               getStudentUnitRecord(studentId_, unitCode_).
-               getAssignment1Mark();
+        return studentUnitRecordManager_
+                .getStudentUnitRecord(studentId_, unitCode_)
+                .getAssignment1Mark();
     }
 
 
@@ -88,8 +88,8 @@ public class StudentUnitRecordProxy
      * @param mark Assignment 2 mark.
      */
     public void setAssignment2Mark(float mark) {
-        studentUnitRecordManager_.getStudentUnitRecord(studentId_, unitCode_).
-               setAssignment2Mark(mark);
+        studentUnitRecordManager_.getStudentUnitRecord(studentId_, unitCode_)
+                .setAssignment2Mark(mark);
     }
 
 
@@ -100,9 +100,9 @@ public class StudentUnitRecordProxy
      * @return Assignment 2 mark.
      */
     public float getAssignment2Mark() {
-        return studentUnitRecordManager_.
-               getStudentUnitRecord(studentId_, unitCode_).
-               getAssignment2Mark();
+        return studentUnitRecordManager_
+                .getStudentUnitRecord(studentId_, unitCode_)
+                .getAssignment2Mark();
     }
 
 
@@ -113,9 +113,9 @@ public class StudentUnitRecordProxy
      * @param mark Exam mark.
      */
     public void setExamMark(float mark) {
-        studentUnitRecordManager_.
-               getStudentUnitRecord(studentId_, unitCode_).
-               setExamMark(mark);
+        studentUnitRecordManager_
+                .getStudentUnitRecord(studentId_, unitCode_)
+                .setExamMark(mark);
     }
 
 
@@ -126,9 +126,9 @@ public class StudentUnitRecordProxy
      * @return Exam mark.
      */
     public float getExamMark() {
-        return studentUnitRecordManager_.
-               getStudentUnitRecord(studentId_, unitCode_).
-               getExamMark();
+        return studentUnitRecordManager_
+                .getStudentUnitRecord(studentId_, unitCode_)
+                .getExamMark();
     }
 
 
@@ -139,8 +139,8 @@ public class StudentUnitRecordProxy
      * @return Total mark.
      */
     public float getTotalMark() {
-        return studentUnitRecordManager_.
-               getStudentUnitRecord(studentId_, unitCode_).
-               getTotalMark();
+        return studentUnitRecordManager_
+                .getStudentUnitRecord(studentId_, unitCode_)
+                .getTotalMark();
     }
 }

@@ -6,7 +6,9 @@ package datamanagement;
  * @author Andrew Tobin
  * @since 2015-08-05
  */
-public class UnitProxy implements IUnit {
+public class UnitProxy
+        implements IUnit
+{
 
     private String unitCode_;
     private String unitName_;
@@ -211,7 +213,8 @@ public class UnitProxy implements IUnit {
      */
     public void setAssessmentWeights(int assessment1Weight,
                                      int assessment2Weight, int examWeight) {
-        unitManager_.getUnit(unitCode_).setAssessmentWeights(assessment1Weight,
-                assessment2Weight, examWeight);
+        unitManager_.getUnit(unitCode_)
+                .setAssessmentWeights(assessment1Weight,
+                        assessment2Weight, examWeight);
     }
 }

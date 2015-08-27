@@ -1,4 +1,5 @@
 package datamanagement;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -12,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -27,8 +29,10 @@ import java.awt.event.ItemListener;
  * @author Andrew Tobin
  * @since 2015-08-05
  */
-public class CheckGradeUserInterface extends JFrame implements IUnitLister,
-		IStudentLister {
+public class CheckGradeUserInterface extends JFrame
+		implements IUnitLister,
+		IStudentLister
+{
 
 	// Variables used internally
 	private CheckGradeControl checkGradeControl_;

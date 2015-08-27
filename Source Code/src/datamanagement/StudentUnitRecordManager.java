@@ -57,8 +57,8 @@ public class StudentUnitRecordManager
     public IStudentUnitRecord getStudentUnitRecord(Integer studentID,
                                                    String unitCode)
     {
-        IStudentUnitRecord record = studentUnitRecordMap_.
-                get(studentID.toString() + unitCode);
+        IStudentUnitRecord record = studentUnitRecordMap_
+                .get(studentID.toString() + unitCode);
 
         return record != null ? record :
                 createStudentUnitRecord(studentID, unitCode);
@@ -66,25 +66,26 @@ public class StudentUnitRecordManager
 
 
 
-    private IStudentUnitRecord createStudentUnitRecord(Integer studentId, String unitCode)
+    private IStudentUnitRecord createStudentUnitRecord(Integer studentId,
+                                                       String unitCode)
     {
         IStudentUnitRecord record;
 
-        for (Element element : (List<Element>)
-                XmlManager.getInstance().getDocument().getRootElement().
-                        getChild("studentUnitRecordTable").
-                        getChildren("record")) {
+        for (Element element : (List<Element>)XmlManager.getInstance()
+                .getDocument().getRootElement()
+                .getChild("studentUnitRecordTable")
+                .getChildren("record")) {
             String recordStudentId = element.getAttributeValue("sid");
             String recordUnitCode = element.getAttributeValue("uid");
 
             if (studentId.toString().equals(recordStudentId) &&
                     unitCode.equals(recordUnitCode)) {
-                float assignment1 = new Float(
-                        element.getAttributeValue("asg1")).floatValue();
-                float assignment2 = new Float(
-                        element.getAttributeValue("asg2")).floatValue();
-                float exam = new Float(
-                        element.getAttributeValue("exam")).floatValue();
+                float assignment1 =
+                        new Float(element.getAttributeValue("asg1")).floatValue();
+                float assignment2 =
+                        new Float(element.getAttributeValue("asg2")).floatValue();
+                float exam =
+                        new Float(element.getAttributeValue("exam")).floatValue();
 
                 record = new StudentUnitRecord(studentId, unitCode,
                         assignment1, assignment2, exam);
@@ -117,10 +118,10 @@ public class StudentUnitRecordManager
             return recordList;
 
         recordList = new StudentUnitRecordList();
-        for (Element element : (List<Element>)
-                XmlManager.getInstance().getDocument().getRootElement().
-                        getChild("studentUnitRecordTable").
-                        getChildren("record")) {
+        for (Element element : (List<Element>)XmlManager.getInstance()
+                .getDocument().getRootElement()
+                .getChild("studentUnitRecordTable")
+                .getChildren("record")) {
             String recordUnitCode = element.getAttributeValue("uid");
 
             if (unitCode.equals(recordUnitCode)) {
@@ -155,10 +156,10 @@ public class StudentUnitRecordManager
             return recordList;
 
         recordList = new StudentUnitRecordList();
-        for (Element element : (List<Element>)
-                XmlManager.getInstance().getDocument().getRootElement().
-                        getChild("studentUnitRecordTable").
-                        getChildren("record")) {
+        for (Element element : (List<Element>)XmlManager.getInstance()
+                .getDocument().getRootElement()
+                .getChild("studentUnitRecordTable")
+                .getChildren("record")) {
             String recordStudentId = element.getAttributeValue("sid");
 
             if (studentID.toString().equals(recordStudentId)) {
@@ -186,9 +187,9 @@ public class StudentUnitRecordManager
     public void saveRecord(IStudentUnitRecord studentUnitRecord)
     {
         for (Element element : (List<Element>)
-                XmlManager.getInstance().getDocument().getRootElement().
-                        getChild("studentUnitRecordTable").
-                        getChildren("record")) {
+                XmlManager.getInstance().getDocument().getRootElement()
+                        .getChild("studentUnitRecordTable")
+                        .getChildren("record")) {
             Integer studentId = studentUnitRecord.getStudentId();
             String recordStudentId = element.getAttributeValue("sid");
 
@@ -197,12 +198,12 @@ public class StudentUnitRecordManager
 
             if (studentId.toString().equals(recordStudentId) &&
                     unitCode.equals(recordUnitCode)) {
-                String assignment1Mark = new Float(
-                        studentUnitRecord.getAssignment1Mark()).toString();
-                String assignment2Mark = new Float(
-                        studentUnitRecord.getAssignment2Mark()).toString();
-                String examMark = new Float(
-                        studentUnitRecord.getExamMark()).toString();
+                String assignment1Mark =
+                        new Float(studentUnitRecord.getAssignment1Mark()).toString();
+                String assignment2Mark =
+                        new Float(studentUnitRecord.getAssignment2Mark()).toString();
+                String examMark =
+                        new Float(studentUnitRecord.getExamMark()).toString();
 
                 element.setAttribute("asg1", assignment1Mark);
                 element.setAttribute("asg2", assignment2Mark);

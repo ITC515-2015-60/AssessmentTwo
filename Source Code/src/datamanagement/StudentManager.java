@@ -11,7 +11,8 @@ import java.util.HashMap;
  * @author Zeno Li
  * @since 2015-08-05
  */
-public class StudentManager {
+public class StudentManager
+{
     private final static StudentManager instance_ = new StudentManager();
 
     private StudentMap studentMap_;
@@ -60,11 +61,12 @@ public class StudentManager {
     private Element getStudentElement(Integer id)
     {
         for (Element element :
-             (List<Element>)
-             XmlManager.getInstance().getDocument().getRootElement().
-                        getChild("studentTable").getChildren("student"))
+             (List<Element>)XmlManager.getInstance()
+                     .getDocument().getRootElement()
+                     .getChild("studentTable").getChildren("student")) {
             if (id.toString().equals(element.getAttributeValue("sid")))
                 return element;
+        }
 
         return null;
     }
