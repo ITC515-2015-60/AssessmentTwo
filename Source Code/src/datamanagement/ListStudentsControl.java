@@ -13,7 +13,7 @@ public class ListStudentsControl {
     private StudentManager studentManager_;
 
     public ListStudentsControl() {
-        studentManager_ = StudentManager.getSelf();
+        studentManager_ = StudentManager.getInstance();
     }
 
     /**

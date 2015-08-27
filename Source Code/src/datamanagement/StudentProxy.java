@@ -27,7 +27,7 @@ public class StudentProxy
         this.id_ = id;
         this.firstName_ = firstName;
         this.lastName_ = lastName;
-        this.studentManager_ = StudentManager.getSelf();
+        this.studentManager_ = StudentManager.getInstance();
     }
 
 

@@ -3,6 +3,7 @@ package datamanagement;
 import org.jdom.Element;
 
 import java.util.List;
+import java.util.HashMap;
 
 /**
  * The class controls student objects.
@@ -11,10 +12,10 @@ import java.util.List;
  * @since 2015-08-05
  */
 public class StudentManager {
-    private static StudentManager self_ = null;
+    private final static StudentManager instance_ = new StudentManager();
 
     private StudentMap studentMap_;
-    private java.util.HashMap<String, StudentMap> unitStudentMap_;
+    private HashMap<String, StudentMap> unitStudentMap_;
 
 
     /**
@@ -22,20 +23,17 @@ public class StudentManager {
      */
     private StudentManager() {
         studentMap_ = new StudentMap();
-        unitStudentMap_ = new java.util.HashMap<>();
+        unitStudentMap_ = new HashMap<>();
     }
 
     /**
-     * Return static student manager object self_.
+     * Return static student manager object instance_.
      *
      * @return Student manager.
      */
-    public static StudentManager getSelf()
+    public static StudentManager getInstance()
     {
-        if (self_ == null)
-            self_ = new StudentManager();
-
-        return self_;
+        return instance_;
     }
 
 
@@ -80,7 +78,7 @@ public class StudentManager {
 
         if (element != null) {
             StudentUnitRecordList recordList =
-                StudentUnitRecordManager.getSelf().getRecordsByStudent(id);
+                StudentUnitRecordManager.getInstance().getRecordsByStudent(id);
 
             student = new Student(
                                 new Integer(element.getAttributeValue("sid")),
@@ -131,10 +129,10 @@ public class StudentManager {
 
         IStudent student;
         StudentUnitRecordList studentUnitRecordList =
-                StudentUnitRecordManager.getSelf().getRecordsByUnit(unitCode);
+                StudentUnitRecordManager.getInstance().getRecordsByUnit(unitCode);
 
         for (IStudentUnitRecord record : studentUnitRecordList) {
-            student = createStudentProxy(new Integer(record.getStudentID()));
+            student = createStudentProxy(new Integer(record.getStudentId()));
             studentMap.put(student.getId(), student);
         }
 
